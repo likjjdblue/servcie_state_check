@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: service-state-check
+  labels:
+    appName: service_state_check
+    appType: flaskApp
+spec:
+  containers:
+  - name: service-state-check
+    image: registry.cn-hangzhou.aliyuncs.com/trssly/service_state_check:latest
+    imagePullPolicy: IfNotPresent
+    env:
+    - name: RetryInterval
+      value: '2'
+    - name: RetryTimes
+      value: '100'
+    - name: ConnectionTimeOut
+      value: '5'
+  restartPolicy: Never
+
